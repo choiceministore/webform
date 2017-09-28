@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>คดีความ</title>
+        <!--<link rel="stylesheet" href="static/bootstrap.min.css">-->
+       	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+</head>
+<header>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">
+	  <img style="max-width:80px; margin-top: -7px;" src="{{ url_for('static', filename='images/choice7-11.png') }}">
+	  </a>
+    </div>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">เพิ่มข้อมูล <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\case">คดีความ</a></li>
+          <li><a href="\offen">ผู้กระทำความผิด</a></li>
+          <li><a href="\follow">การติดตาม</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Update <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\update">อัพเดตการติดตาม</a></li>
+          <li><a href="#">menu</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ดูข้อมูล <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\showdata">ข้อมูลคดีความ</a></li>
+          <li><a href="\showof">ข้อมูลผู้กระทำความผิด</a></li>
+          <li><a href="\showfoll">ข้อมูลการติดตาม</a></li>
+          <li><a href="\join">Join</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="\logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+<body>
+<div class="container">
+<form data-toggle="validator" role="form">
+  <div class="form-group">
+    <label for="inputName" class="control-label">Name</label>
+    <input type="text" class="form-control" id="inputName" placeholder="Cina Saffary" data-error="Please enter name" required >
+  </div>
+  <div class="form-group has-feedback">
+    <label for="inputTwitter" class="control-label">Twitter</label>
+    <div class="input-group">
+      <span class="input-group-addon">@</span>
+      <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
+    </div>
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail" class="control-label">Email</label>
+    <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+    <div class="help-block with-errors"></div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword" class="control-label">Password</label>
+    <div class="form-inline row">
+      <div class="form-group col-sm-6">
+        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Password" required>
+        <div class="help-block">Minimum of 6 characters</div>
+      </div>
+      <div class="form-group col-sm-6">
+        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
+        <div class="help-block with-errors"></div>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="radio">
+      <label>
+        <input type="radio" name="underwear" required>
+        Boxers
+      </label>
+    </div>
+    <div class="radio">
+      <label>
+        <input type="radio" name="underwear" required>
+        Briefs
+      </label>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" id="terms" data-error="Before you wreck yourself" required>
+        Check yourself
+      </label>
+      <div class="help-block with-errors"></div>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+</div>
+</body>
+</html>

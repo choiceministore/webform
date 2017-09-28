@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>คดีความ</title>
+        <!--<link rel="stylesheet" href="static/bootstrap.min.css">-->
+       	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <!-- Bootstrap Date-Picker Plugin -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+
+<!--<script>-->
+    <!--$(document).ready(function(){-->
+        <!--var date_input=$('input[name="date"]');-->
+
+        <!--var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";-->
+
+        <!--date_input.datepicker({-->
+            <!--format: 'mm/dd/yyyy',-->
+            <!--container: container,-->
+            <!--todayHighlight: true,-->
+            <!--autoclose: true,-->
+        <!--})-->
+    <!--})-->
+<!--</script>-->
+</head>
+<header>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/home">
+	  <img style="max-width:80px; margin-top: -7px;" src="{{ url_for('static', filename='images/choice7-11.png') }}">
+	  </a>
+    </div>
+  </div>
+  <div class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">เพิ่มข้อมูล <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\case">คดีความ</a></li>
+          <li><a href="\offen">ผู้กระทำความผิด</a></li>
+
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">การติดตามคดี <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\follow">เพิ่มการติดตามคดีใหม่</a></li>
+          <li><a href="\update">อัพเดตการติดตามคดี</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ดูข้อมูล <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="\showdata">ข้อมูลคดีความ</a></li>
+          <li><a href="\showof">ข้อมูลผู้กระทำความผิด</a></li>
+          <li><a href="\showfoll">ข้อมูลการติดตาม</a></li>
+          <li><a href="\join">Join</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="\logout"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="well well-sm">
+      <form class="form-horizontal" data-toggle="validator" role="form" action = "{{ url_for('addcase') }}" method = "POST">
+        <fieldset>
+
+<!-- Form Name -->
+<legend style="text-align:center; letter-spacing: 3px">เพิ่มคดีความ</legend>
+
+<!-- Text input-->
+<div class="form-group has-feedback">
+  <label class="col-md-4 control-label" for="bcode">รหัสสาขา</label>
+  <div class="col-md-4">
+  <input data-error="กรุณากรอกรหัสสาขา" id="bcode" name="bcode"  placeholder="รหัสสาขา" class="form-control input-md" pattern="\d*" required type="text" minlength="4" maxlength="5" autofocus>
+
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    <div class="help-block with-errors"></div>
+  </div>
+
+  </div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bname">ชื่อสาขา</label>
+  <div class="col-md-4">
+  <input id="bname" name="bname" placeholder="ชื่อสาขา" class="form-control input-md"  type="text">
+  </div>
+</div>
+<br>
+<!-- Text input-->
+
+    <div class="form-group has-feedback">
+        <label class="col-md-4 control-label" for="date">วันที่เกิดเหตุ</label>
+            <div class="col-md-3">
+                <input data-error="กรุณากรอกวันที่แจ้งเหตุ" id="date" name="date" placeholder="วันที่แจ้งเหตุ" class="form-control input-md" required="" type="date">
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+            </div>
+    </div>
+
+
+    <!--<div class="bootstrap-iso">-->
+      <!--<div class="form-group ">-->
+        <!--<label class="col-md-4 control-label " for="date">Date</label>-->
+            <!--<div class="col-md-4">-->
+                <!--<input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>-->
+            <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="cinout">คดีภายใน/ภายนอก</label>
+  <div class="col-md-2">
+    <select id="cinout" name="cinout" class="form-control">
+      <option value="">เลือก...</option>
+      <option value="ภายใน">ภายใน</option>
+      <option value="ภายนอก">ภายนอก</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="ctype">รูปแบบคดี</label>
+  <div class="col-md-2">
+    <select id="ctype" name="ctype" class="form-control">
+      <option value="">เลือก...</option>
+      <option value="ขโมย">ขโมย</option>
+      <option value="ทุจริต">ทุจริต</option>
+      <option value="ความผิดทางวินัย">ความผิดทางวินัย</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group has-feedback">
+  <label class="col-md-4 control-label" for="cost">มูลค่าความเสียหาย</label>
+  <div class="col-md-4 ">
+
+    <input data-error="กรุณากรอกมูลค่าความเสียหายเป็นตัวเลขเท่านั้น" id="cost" name="cost" placeholder="มูลค่าความเสียหาย" class="form-control input-md" required="" type="number">
+    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+    <div class="help-block with-errors"></div>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="respons">ผู้รับผิดชอบความเสียหาย</label>
+  <div class="col-md-2">
+    <select id="respons" name="respons" class="form-control">
+      <option value="">เลือก...</option>
+      <option value="บริษัท">บริษัท</option>
+      <option value="ผู้ทำความผิด">ผู้ทำความผิด</option>
+      <option value="ประกันของบริษัท">ประกันของบริษัท</option>
+      <option value="ประกันของคู่กรณี">ประกันของคู่กรณี</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="edate">วันที่คดีสิ้นสุด</label>
+  <div class="col-md-3">
+  <input id="edate" name="edate" placeholder="วันที่คดีสิ้นสุด" class="form-control input-md"  type="date">
+  </div>
+</div>
+
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="detail">รายละเอียดคดี</label>
+  <div class="col-md-4">
+    <textarea class="form-control" id="detail" name="detail"></textarea>
+  </div>
+</div>
+
+<!-- Multiple Radios -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="notification">การแจ้งความ</label>
+  <div class="col-md-4">
+  <div class="radio">
+    <label for="notification-0">
+      <input name="notification" id="notification-0" value="แจ้งความ" checked="checked" type="radio">
+      แจ้งความ
+    </label>
+	</div>
+  <div class="radio">
+    <label for="notification-1">
+      <input name="notification" id="notification-1" value="ไม่แจ้งความ" type="radio">
+      ไม่แจ้งความ
+    </label>
+	</div>
+  </div>
+</div>
+          <div style="text-align:center">
+<button type="submit" class="btn btn-primary ">ส่ง case</button>
+          </div>
+</fieldset>
+</form>
+<!--</div>-->
+        </div>
+    </div>
+  </div>
+
+</body>
+</html>
